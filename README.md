@@ -30,14 +30,14 @@ Things you may want to cover:
 | encrypted_password | string              | null: false               |
 | nickname           | string         | null: false, unique:true       |
 | name           | string            | null: false,unique:true               |
-
+| date_of_birth  | string              | null: false               |
 
 
 ### Association
 
-has_many :nickname
-has_many :user
-has_one :name
+has_many :items
+has_many :orders
+has_many :addresses
 
 
 ## itemsテーブル（商品情報）
@@ -56,9 +56,11 @@ has_one :name
 
 ### アソシエーション
 
-belongs_to :user
-has_many :nickname
-has_one :item_name
+belongs_to :users
+belongs_to :orders
+belongs_to :addresses
+
+has_one :orders
 
 
 ## ordersテーブル（商品購入情報）
@@ -72,12 +74,13 @@ has_one :item_name
 ###  アソシエーション
 
 
-belongs_to :nickname
-belongs_to :user
-has_one :item_name
+belongs_to :users
+belongs_to :addresses
+
+has_one :items
 
 
-## addressテーブル（発送先情報）
+## addressesテーブル（発送先情報）
 
 |Column         |Type|Options|
 | user          | references | null: false, foreign_key: true |
@@ -88,7 +91,9 @@ has_one :item_name
 
 ###  アソシエーション
 
-belongs_to :nickname
-belongs_to :user
-belongs_to :shipping_address
-belongs_to :shipping_days
+belongs_to :users
+belongs_to :orders
+belongs_to :items
+
+has_one :items
+has_one :orders
