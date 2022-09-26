@@ -23,7 +23,7 @@ Things you may want to cover:
 
 * ...
 
-## usersテーブル
+## usersテーブル(ユーザー情報)
 
 |Column|Type|Options|
 | email               | string              | null: false, unique: true |
@@ -40,7 +40,7 @@ has_many :user
 has_one :name
 
 
-## itemsテーブル
+## itemsテーブル（商品情報）
 
 |Column         |Type|Options|
 | user          | references | null: false, foreign_key: true |
@@ -50,7 +50,7 @@ has_one :name
 | item_category       | text    | null:false             |
 | item_condition     | text    | null:false             |
 | delivery_charge    | integer       | null:false   |
-| shipping_area      | string       |  null:false   |
+| shipping_address      | string       |  null:false   |
 | shipping_days      | datetime       | null:false   |
 | selling_price     |  integer       | null:false   |
 
@@ -61,7 +61,7 @@ has_many :nickname
 has_one :item_name
 
 
-## ordersテーブル
+## ordersテーブル（商品購入情報）
 
 |Column         |Type|Options|
 | user          | references | null: false, foreign_key: true |
@@ -74,4 +74,21 @@ has_one :item_name
 
 belongs_to :nickname
 belongs_to :user
+has_one :item_name
 
+
+## addressテーブル（発送先情報）
+
+|Column         |Type|Options|
+| user          | references | null: false, foreign_key: true |
+| nickname           | string              | null: false      |
+| shipping_address   |  string          | null: false |
+| shipping_days      | datetime       | null:false   |
+
+
+###  アソシエーション
+
+belongs_to :nickname
+belongs_to :user
+belongs_to :shipping_address
+belongs_to :shipping_days
