@@ -28,24 +28,26 @@ Things you may want to cover:
 |Column|Type|Options|
 | email               | string              | null: false, unique: true |
 | encrypted_password | string              | null: false               |
-| nickname           | string         | null: false, unique:true       |
-| name           | string            | null: false,unique:true               |
-| date_of_birth  | string              | null: false               |
+| nickname           | string         | null: false      |
+| first_name           | string            | null: false,unique:true               |
+| second_name           | string            | null: false,unique:true               |
+| first_subname           | string            | null: false,unique:true               |
+| second_subname           | string            | null: false,unique:true               |
+| date  | string              | null: false               |
 
 
 ### Association
 
 has_many :items
 has_many :orders
-has_many :addresses
+
 
 
 ## itemsテーブル（商品情報）
 
 |Column         |Type|Options|
 | user          | references | null: false, foreign_key: true |
-| nickname           | string              | null: false      |
-| item_name          | text             | null: false               |
+| item_name          | string         | null: false               |
 | item_description          | text             | null: false               |
 | item_category       | text    | null:false             |
 | item_condition     | text    | null:false             |
@@ -67,9 +69,10 @@ has_one :orders
 
 |Column         |Type|Options|
 | user          | references | null: false, foreign_key: true |
-| nickname           | string              | null: false      |
 | card_information    |   integer                | null: false  |
 | shipping_address   |  string          | null: false |
+| delivery_charge    | integer       | null:false   |
+|  prefecture_name    | varchar(255)  | null:false   |
 
 ###  アソシエーション
 
@@ -84,16 +87,19 @@ has_one :items
 
 |Column         |Type|Options|
 | user          | references | null: false, foreign_key: true |
-| nickname           | string              | null: false      |
-| shipping_address   |  string          | null: false |
+| name           | string              | null: false, foreign_key: true    |
 | shipping_days      | datetime       | null:false   |
+|  prefecture_name    | varchar(255)  | null:false   |　##都道府県名
+| zipcode  |  char(7)  | null:false  | 　##郵便番号
+| addr_city | varchar(255) | null:false | ##市区町村名
+|  addr_town | varchar(255) | null:false | ##町域
+| addr_num  | varchar(255)	|null:false | ##丁目、番地
+
 
 
 ###  アソシエーション
 
-belongs_to :users
-belongs_to :orders
-belongs_to :items
 
-has_one :items
+belongs_to :orders
+has_many :items
 has_one :orders
