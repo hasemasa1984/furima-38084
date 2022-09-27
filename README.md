@@ -31,9 +31,9 @@ Things you may want to cover:
 | nickname           | string         | null: false      |
 | first_name           | string            | null: false,unique:true               |
 | second_name           | string            | null: false,unique:true               |
-| first_subname           | string            | null: false,unique:true               |
-| second_subname           | string            | null: false,unique:true               |
-| date  | string              | null: false               |
+| first_subname           | string            | null: false               |
+| second_subname           | string            | null: false               |
+| date  | string              | null: false,unique:true                |
 
 
 ### Association
@@ -102,4 +102,3 @@ has_one :items
 
 belongs_to :orders
 has_many :items
-has_one :orders
