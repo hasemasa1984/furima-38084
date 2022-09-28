@@ -82,7 +82,7 @@ belongs_to :item
 ## addressesテーブル（発送先情報）
 
 |Column         |Type|Options|
-| products        | references | null: false, foreign_key: true |
+| user_id        | references | null: false, foreign_key: true |
 |  prefecture_id    | integer  | null:false   |　##都道府県名
 | zipcode  |  string | null:false  | 　##郵便番号
 | addr_city |  string | null:false | ##市区町村名
