@@ -33,7 +33,7 @@ Things you may want to cover:
 | last_name           | string            | null: false               |
 | first_name_kana           | string            | null: false               |
 | last_name_kana           | string            | null: false               |
-| date  | date              | null: false               |
+| birth_date  | date              | null: false               |
 
 
 ### Association
@@ -82,7 +82,7 @@ belongs_to :item
 ## addressesテーブル（発送先情報）
 
 |Column         |Type|Options|
-| user          | references | null: false, foreign_key: true |
+| products        | references | null: false, foreign_key: true |
 |  prefecture_id    | integer  | null:false   |　##都道府県名
 | zipcode  |  string | null:false  | 　##郵便番号
 | addr_city |  string | null:false | ##市区町村名
