@@ -47,12 +47,12 @@ has_many :orders
 
 |Column         |Type|Options|
 | user          | references | null: false, foreign_key: true |
-| item_name          | string         | null: false               |
+| title          | string         | null: false               |
 | category_id       | integer    | null:false             |
 | condition_id     | integer    | null:false             |
 | delivery_charge_id    | integer       | null:false   |
 | scheduled_delivery_id      | integer       | null:false   |
-| selling_price_id     |  integer       | null:false   |
+| product_price_id     |  integer       | null:false   |
 |  prefecture_id    |  integer  | null: false  |
 | products    | text  | null:false |
 
@@ -82,7 +82,6 @@ belongs_to :item
 ## addressesテーブル（発送先情報）
 
 |Column         |Type|Options|
-| item | string | null: false  |
 | user          | references | null: false, foreign_key: true |
 |  prefecture_id    | integer  | null:false   |　##都道府県名
 | zipcode  |  string | null:false  | 　##郵便番号
