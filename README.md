@@ -33,7 +33,7 @@ Things you may want to cover:
 | last_name           | string            | null: false               |
 | first_name_kana           | string            | null: false               |
 | last_name_kana           | string            | null: false               |
-| birth_date  | string              | null: false               |
+| date  | string              | null: false               |
 
 
 ### Association
@@ -53,11 +53,13 @@ has_many :orders
 | delivery_charge_id    | integer       | null:false   |
 | scheduled_delivery_id      | integer       | null:false   |
 | selling_price_id     |  integer       | null:false   |
+|  prefecture_id    |  integer  | null: false  |
+|  image  | string  | null:false  |
 
 ### アソシエーション
 
 belongs_to :user
-has_many :addresses
+has_one :addresses
 
 has_one :order
 
@@ -66,9 +68,7 @@ has_one :order
 
 |Column         |Type|Options|
 | user          | references | null: false, foreign_key: true |
-| card_information    |   integer                | null: false  |
-| delivery_charge    | integer       | null:false   |
-
+| item   |   string  | null: false, foreign_key: true  |
 
 
 ###  アソシエーション
@@ -82,13 +82,12 @@ belongs_to :item
 ## addressesテーブル（発送先情報）
 
 |Column         |Type|Options|
-| name           | string              | null: false, foreign_key: true    |
-|  prefecture_name    | varchar(255)  | null:false   |　##都道府県名
-| zipcode  |  char(7)  | null:false  | 　##郵便番号
-| addr_city | varchar(255) | null:false | ##市区町村名
-|  addr_town | varchar(255) | null:false | ##町域
-| addr_num  | varchar(255)	|null:false | ##丁目、番地
-|  building |   varchar     |null:false | ##建物名
+|   item        | string              | null: false, foreign_key: true    |
+|  prefecture_id    | integer  | null:false   |　##都道府県名
+| zipcode  |  string | null:false  | 　##郵便番号
+| addr_city |  string | null:false | ##市区町村名
+| addr_num  | string	|null:false | ##丁目、番地
+|  building |    string   |     | ##建物名
 | phone_number  | string | null:false  |　　##電話番号
 
 
