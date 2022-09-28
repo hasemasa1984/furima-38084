@@ -33,7 +33,7 @@ Things you may want to cover:
 | last_name           | string            | null: false               |
 | first_name_kana           | string            | null: false               |
 | last_name_kana           | string            | null: false               |
-| date  | string              | null: false               |
+| date  | date              | null: false               |
 
 
 ### Association
@@ -54,12 +54,12 @@ has_many :orders
 | scheduled_delivery_id      | integer       | null:false   |
 | selling_price_id     |  integer       | null:false   |
 |  prefecture_id    |  integer  | null: false  |
-|  image  | string  | null:false  |
+| products    | text  | null:false |
+
 
 ### アソシエーション
 
 belongs_to :user
-has_one :addresses
 
 has_one :order
 
@@ -68,21 +68,22 @@ has_one :order
 
 |Column         |Type|Options|
 | user          | references | null: false, foreign_key: true |
-| item   |   string  | null: false, foreign_key: true  |
+| item   | references    | null: false, foreign_key: true  |
 
 
 ###  アソシエーション
 
 
 belongs_to :user
-belongs_to :address
+has_one :address
 belongs_to :item
 
 
 ## addressesテーブル（発送先情報）
 
 |Column         |Type|Options|
-|   item        | string              | null: false, foreign_key: true    |
+| item | string | null: false  |
+| user          | references | null: false, foreign_key: true |
 |  prefecture_id    | integer  | null:false   |　##都道府県名
 | zipcode  |  string | null:false  | 　##郵便番号
 | addr_city |  string | null:false | ##市区町村名
@@ -93,8 +94,5 @@ belongs_to :item
 
 ###  アソシエーション
 
+belongs_to :order
 
-
-belongs_to :item
-
-has_one :order
