@@ -25,6 +25,20 @@ RSpec.describe User, type: :model do
         @user.last_name_kana = 'イナニス'
         expect(@user).to be_valid
       end
+      it 'ユーザー本名のフリガナは、全角（カタカナ）での入力が必須であること' do
+        @user.first_name_kana = 'カ'
+        @user.last_name_kana = 'カ'
+        @user.valid?
+      end
+      it 'ユーザー本名のフリガナは、名字と名前がそれぞれ必須であること' do
+        @user.first_name = ''
+        @user.last_name = ''
+        @user.valid?
+      end
+      it  'パスワードとパスワード（確認用）は、値の一致が必須であること' do
+        @user.password_confirmation = ''
+        @user.valid?
+      end
     end
     context '新規登録出来ない時' do
       it 'ニックネームが必須であること' do
