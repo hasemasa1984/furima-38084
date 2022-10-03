@@ -12,6 +12,7 @@ RSpec.describe User, type: :model do
       end
       it 'パスワードは、6文字以上での入力が必須であること' do
         @user.password = 'test1234'
+        @user.password_confirmation = "test1234"
         expect(@user).to be_valid
       end
       it 'ユーザー本名は、名字と名前がそれぞれ必須であること' do
@@ -104,8 +105,9 @@ RSpec.describe User, type: :model do
       end
       it 'ユーザー本名のフリガナは、名字と名前がそれぞれ必須であること' do
         @user.first_name_kana = ''
+        @user.last_name_kana = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name kana can't be blank", "First name kana 全角カタカナで入力して下さい")
+        expect(@user.errors.full_messages).to include("First name kana Last name kana can't be blank", "First name kana Last name kana 全角カタカナで入力して下さい")
       end
       it 'ユーザー本名のフリガナは、全角（カタカナ）での入力が必須であること' do
         @user.first_name_kana = 'aaaa'
