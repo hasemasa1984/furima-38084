@@ -61,11 +61,15 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
-      it 'パスワードは、半角英数字混合での入力が必須であること' do
-        @user.password = 'test123'
-        @user.password_confirmation ='test1234'
+      it 'パスワードが英語のみでは登録できない' do
+        @user.password = 'abcdef'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+        expect(@user.errors.full_messages).to include('は半角英数を両方含む必要があります')
+      end
+      it 'パスワードが数字のみでは登録できない' do
+        @user.password = '123456'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('は半角英数を両方含む必要があります')
       end
       it 'メールアドレスが一意性であること' do
         @user.save
@@ -83,6 +87,16 @@ RSpec.describe User, type: :model do
         @user.birth_date = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Birth date can't be blank")
+      end
+      it "全角文字を含むパスワードでは登録できない" do
+        @user.password = "AAAAAA"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password は半角で登録してください")
+      end
+      it "パスワードが6文字未満では登録できない" do
+        user = build(:user, password: "123456", encrypted_password: "123456") # 意図的に6文字のパスワードを設定してエラーが出るかをテスト 
+        user.valid?
+        expect(user.errors[:encrypted_password]).to include("は7文字以上で入力してください")
       end
     end
   end
