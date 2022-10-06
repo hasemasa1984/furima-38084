@@ -25,60 +25,20 @@ RSpec.describe User, type: :model do
         @user.last_name_kana = 'イナニス'
         expect(@user).to be_valid
       end
-      it 'ユーザー本名のフリガナは、全角（カタカナ）での入力が必須であること' do
-        @user.first_name_kana = 'カ'
-        @user.last_name_kana = 'カ'
-        @user.valid?
-      end
-      it 'ユーザー本名のフリガナは、名字と名前がそれぞれ必須であること' do
-        @user.first_name = ''
-        @user.last_name = ''
-        @user.valid?
-      end
       it  'パスワードとパスワード（確認用）は、値の一致が必須であること' do
         @user.password_confirmation = ''
         @user.valid?
-      end
-      it 'ニックネームが必須であること' do
-        @user.nickname = ''
-        @user.valid?
-      end
-      it 'メールアドレスが必須であること' do
-        @user.email = ''
-        @user.valid?
-      end
-      it 'パスワードが必須であること' do
-        @user.password = ''
-        @user.valid?
-      end
-      it 'パスワードは、確認用を含めて2回入力すること' do
-        @user.password_confirmation = ''
-        @user.valid?
-      end
-      it 'メールアドレスが一意性であること' do
-        @user.save
-        another_user = FactoryBot.build(:user)
-        another_user.email = @user.email
-        another_user.valid?
       end
       it 'メールアドレスは、@を含む必要があること' do
         @user.email = 'aaaaaaa'
         @user.valid?
       end
-      it '生年月日が必須であること' do
-        @user.birth_date = ''
-        @user.valid?
-      end
-      it 'パスワードは、半角英数字混合での入力が必須であること' do
-        @user.password = 'abc123'
-        @user.valid?
-      end
     end
     context '新規登録出来ない時' do
       it 'パスワードは、6文字以上での入力が必須であること' do
-        @user.password = 'test1234'
-        @user.password_confirmation = "test1234"
-        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+        @user.password = 'test1'
+        @user.password_confirmation = "test1"
+        expect(@user.errors.full_messages).to include("Password is invalid")
       end
       it 'ニックネームが必須であること' do
         @user.nickname = ''
@@ -99,6 +59,23 @@ RSpec.describe User, type: :model do
         @user.birth_date = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Birth date can't be blank")
+      end
+      it  'パスワードとパスワード（確認用）は、値の一致が必須であること' do
+        @user.password_confirmation = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+      end
+      it 'メールアドレスは、@を含む必要があること' do
+        @user.email = 'aaaaaaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+      end
+      it 'メールアドレスが一意性であること' do
+        @user.save
+        another_user = FactoryBot.build(:user)
+        another_user.email = @user.email
+        another_user.valid?
+        expect(another_user.errors.full_messages).to include("Email is invalid")
       end
       it '姓（全角）が空だと登録できない' do
         @user.first_name = ''
