@@ -27,10 +27,11 @@ RSpec.describe User, type: :model do
       end
     end
     context '新規登録出来ない時' do
-      it 'パスワードは、6文字以上での入力が必須であること' do
+      it 'パスワードは、6文字以下では入力ができない' do
         @user.password = 'test1'
         @user.password_confirmation = "test1"
-        expect(@user.errors.full_messages).to include("is too short (minimum is 6 characters)")
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
       end
       it 'ニックネームが必須であること' do
         @user.nickname = ''
@@ -112,17 +113,17 @@ RSpec.describe User, type: :model do
       it 'パスワードが英語のみでは登録できない' do
         @user.password = 'abcdef'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+        expect(@user.errors.full_messages).to include("Password is invalid")
       end
       it 'パスワードが数字のみでは登録できない' do
         @user.password = '123456'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+        expect(@user.errors.full_messages).to include("Password is invalid")
       end
       it "全角文字を含むパスワードでは登録できない" do
         @user.password = "AAAAAあ"
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+        expect(@user.errors.full_messages).to include("Password is invalid")
       end
     end
   end
