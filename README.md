@@ -48,7 +48,7 @@ has_many :orders
 |Column         |Type|Options|
 | user          | references | null: false, foreign_key: true |
 | title          | string         | null: false               |
-| category_id       | integer    | null:false             |
+| category_id       | integer    | null: false            |
 | condition_id     | integer    | null:false             |
 | delivery_charge_id    | integer       | null:false   |
 | scheduled_delivery_id      | integer       | null:false   |
