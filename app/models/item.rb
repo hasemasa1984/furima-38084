@@ -15,10 +15,12 @@ class Item < ApplicationRecord
   validates :product_price_id, numericality: { other_than: 1 , message: "can't be blank"}
 
 
-  #with_options presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: 'この商品はありません' } do
+  #with_options presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: 'この商品はあります' } do
     #validates :title
     #validates :products 
   #end
+  validates :products,presence: true
+  validates :title,presence: true
 
 
   belongs_to :user
