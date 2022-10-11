@@ -15,10 +15,21 @@ class Item < ApplicationRecord
   validates :product_price_id, numericality: { other_than: 1 , message: "can't be blank"}
 
 
-  #with_options presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: 'この商品はあります' } do
-    #validates :title
-    #validates :products 
-  #end
+  with_options presence: true, format: { with: /\A[0-9]+\z/ } do 
+    validates:product_price_id,numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 },
+    presence: {message: "can't be blank" }  
+  end
+
+  def images_presence
+    if images.attached?
+      if images.length > 1
+        errors.add(:image, '1枚まで投稿できます')
+      end
+    else
+      errors.add(:image, '画像がありません')
+    end
+  end
+
   validates :products,presence: true
   validates :title,presence: true
 
