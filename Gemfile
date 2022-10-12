@@ -35,6 +35,7 @@ group :development, :test do
   gem "faker"
   gem "gimei"
   gem "better_errors"
+  gem 'binding_of_caller'
 end
 
 group :development do
@@ -59,3 +60,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise' 
+gem 'mini_magick'
+gem 'image_processing', '~> 1.2'
+gem 'active_hash'
+gem 'pry-rails'
