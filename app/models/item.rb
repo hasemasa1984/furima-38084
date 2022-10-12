@@ -19,15 +19,6 @@ class Item < ApplicationRecord
     validates :product_price,numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }  
   end
 
-  #def images_presence
-    #if images.attached?
-      #if images.length > 1
-        #errors.add(:image, '1枚まで投稿できます')
-      #end
-    #else
-      #errors.add(:image, '画像がありません')
-    #end
-  #end
 
   validates :products,presence: true
   validates :title,presence: true
