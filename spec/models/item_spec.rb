@@ -73,9 +73,9 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Product price is not a number")
       end
       it '配送料の負担に「---」が選択されている場合は出品できない' do
-        @item.scheduled_delivery_id = 1
+        @item.delivery_charge_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Scheduled delivery can't be blank")
+        expect(@item.errors.full_messages).to include("Delivery charge can't be blank")
       end
     end
   end
