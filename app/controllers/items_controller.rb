@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!,  except: [:index]
-  #before_action :set_item, only: [:edit, :update, :show, :destroy]
+  before_action :set_item, only: [:show]
 
 
   def index
@@ -33,8 +33,9 @@ class ItemsController < ApplicationController
     #end
   #end
 
-  #def show
-  #end
+  def show
+    @item = Item.new
+  end
 
   #def destroy
     #if current_user.id == @item.user_id
@@ -49,8 +50,8 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:title, :image, :products, :category_id, :condition_id, :delivery_charge_id, :prefecture_id, :scheduled_delivery_id, :product_price).merge(user_id: current_user.id)
   end
 
-  #def set_item
-    #@item = Item.find(params[:id])
-  #end
+  def set_item
+    @item = Item.find(params[:id])
+  end
 end
 
