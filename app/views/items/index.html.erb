@@ -128,28 +128,29 @@
     <ul class='item-lists'>
 
       
-      <%# if  @items.present? %>
-      <%# @items.each do |item| %>
+      <% if  @items.present? %>
+      <% @items.each do |item| %>
       <li class='list'>
         <%= link_to "#" do %>
         <div class='item-img-content'>
-          <%= image_tag "item-sample.png", class: "item-img" %>
+          <%= image_tag item.image, class: "item-img"  %>
 
           
-          <%# if  @item.order %>
+          <%# if  items.order %>
           <%#div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
           <%# end %>
           
 
+
         </div>
         <div class='item-info'>
           <h3 class='item-name'>
-            <%#= item.name %>
+            <%= item.title %>
           </h3>
           <div class='item-price'>
-            <span><%#= item.price %>円<br><%#= item.delivery_fee.name %></span>
+            <span><%= item.product_price %>円<br><%= item.delivery_charge.name %></span>
             <div class='star-btn'>
               <%= image_tag "star.png", class:"star-icon" %>
               <span class='star-count'>0</span>
@@ -158,10 +159,10 @@
         </div>
       <% end %>
       </li>
-      <%# end %>
-      <%# else %>
+      <% end %>
+      <% else %>
       <li class='list'>
-        <%= link_to '#' do %>
+        <%= link_to "#" do %>
         <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
         <div class='item-info'>
           <h3 class='item-name'>
@@ -177,7 +178,7 @@
         </div>
         <% end %>
       </li>
-      <%# end %>
+      <% end %>
     </ul>
   </div>
 </div>
