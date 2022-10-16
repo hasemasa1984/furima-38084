@@ -10,10 +10,20 @@ FactoryBot.define do
     product_price                 { 50000 }
 
     association :user
-
-    after(:build) do |item|
-      item.image.attach(io: File.open('public/images/alejandro-escamilla-yC-Yzbqy7PY-unsplash.jpg'), filename: 'alejandro-escamilla-yC-Yzbqy7PY-unsplash.jpg')
-    end
+  end  
+  after(:build) do |item|
+    item.image.attach(io: File.open('public/images/alejandro-escamilla-yC-Yzbqy7PY-unsplash.jpg'), filename: 'alejandro-escamilla-yC-Yzbqy7PY-unsplash.jpg')
   end
+  factory :seller_item, class: Item do
+
+  sequence(:title) { |i| "product_#{i}"}
+  sequence(:description) { |i| "description_#{i}"}
+  
+  price            {50.000}
+  
+  association :address, factory: :selladdress
+      
+  user             {address.user}
+  end  
 end
 
