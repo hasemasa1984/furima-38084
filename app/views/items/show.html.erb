@@ -10,10 +10,10 @@
       <%= image_tag @item.image.variant(resize: '630x500') ,class:"item-box-img" if @item.image.attached? %>
       
       <%# if  @item.order %>
-      <%#div class="sold-out">
+      <div class="sold-out">
         <span>Sold Out!!</span>
-      #</div>
-      <% end %>
+      </div>
+      <%# end %>
       
     </div>
     <div class="item-price-box">
