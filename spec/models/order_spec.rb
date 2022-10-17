@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe Order, type: :model do
+RSpec.describe OrderForm, type: :model do
   before do
-    @order = FactoryBot.build(:order)
+    @order_form = FactoryBot.build(:order_form)
   end
 
   context '内容に問題ない場合' do
