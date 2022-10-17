@@ -136,11 +136,12 @@
           <%= image_tag item.image, class: "item-img"  %>
 
           
-          <%# if  items.order %>
+          <% if  item.order.present? %> 
+          
           <div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
-          <%# end %>
+          <% end %>
           
 
 

@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!,  except: [:index,:show]
+  before_action :authenticate_user!,  except: :index
   before_action :set_item, only: [:show, :edit, :update,:destroy]
   before_action :contributor_confirmation, only: [:edit, :update]
 
@@ -50,7 +50,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:title, :image, :products, :category_id, :condition_id, :delivery_charge_id, :prefecture_id, :scheduled_delivery_id, :product_price).merge(user_id: current_user.id, token: params[:token])
+    params.require(:item).permit(:title, :image, :products, :category_id, :condition_id, :delivery_charge_id, :prefecture_id, :scheduled_delivery_id, :product_price).merge(user_id: current_user.id)
   end
 
   def contributor_confirmation

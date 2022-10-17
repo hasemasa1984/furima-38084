@@ -8,10 +8,11 @@
     validates :addr_city
     validates :addr_num
     validates :phone_number, format: {with: /\d{10,11}/}, length: {maximum: 11}
-    validates :token
     validates :user_id
     validates :item_id
-  end       
+  end
+  
+  validates :token,presence: true
 
   def save 
     order = Order.create(user_id:user_id, item_id:item_id)
