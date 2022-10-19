@@ -34,7 +34,7 @@ RSpec.describe OrderForm, type: :model do
      expect(@order_form.errors.full_messages).to include("Zipcode 例）123-4567")
     end
     it "都道府県が選択されてないと登録できない" do
-      @order_form.prefecture_id = '--'
+      @order_form.prefecture_id = 0
      @order_form.valid?
      expect(@order_form.errors.full_messages).to include("Prefecture can't be blank")
     end
