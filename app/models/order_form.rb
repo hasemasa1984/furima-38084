@@ -10,10 +10,10 @@
     validates :phone_number, format: {with: /\d{10,11}/}, length: {maximum: 11}
     validates :user_id
     validates :item_id
+    validates :token
   end
   
-  validates :token,presence: true
-
+  
   def save 
     order = Order.create(user_id:user_id, item_id:item_id)
     Address.create(zipcode:zipcode, prefecture_id:prefecture_id, addr_city:addr_city, addr_num:addr_num,building:building,phone_number:phone_number, order_id:order.id)
