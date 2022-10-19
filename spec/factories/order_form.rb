@@ -5,8 +5,9 @@ FactoryBot.define do
     addr_city { '東京都' }
     addr_num { '1-1' }
     building { '東京ハイツ' }
-    #product_price { 2000 } 
+    phone_number { '09012345678' } 
+    token {'4434343'}
 
-    association :order
+   
   end
 end

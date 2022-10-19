@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user! 
+  #before_action :set_item, only: [:index, :create]
   
 
   def index
@@ -39,7 +40,8 @@ class OrdersController < ApplicationController
       )
   end
 
-  def address_params
-    params.permit(:prefecture_id, :zipcode, :addr_city, :addr_num , :building,:phone_number).merge(order_id: @order.id)
-  end
+  
+  #def set_item
+    #@item = Item.find(params[:id])
+  #end
 end
