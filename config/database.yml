@@ -19,6 +19,12 @@ default: &default
 
 development:
   <<: *default
+  adapter: mysql2
+  username: root
+  password:
+  host: localhost
+  adapter: postgresql
+  url: <%= ENV['DATABASE_URL'] %>
   database: furima_38084_development
 
 # Warning: The database defined as "test" will be erased and
